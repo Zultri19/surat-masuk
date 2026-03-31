@@ -5,19 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Kategori;
 use App\Models\SuratMasuk;
 use Illuminate\Http\Request;
-// use Illuminate\Support\Facades\Storage;
 use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
-
-$file = $request->file('file_surat');
-
-$uploaded = Cloudinary::upload($file->getRealPath(), [
-    'folder' => 'surat'
-]);
-
-$url = $uploaded->getSecurePath(); // URL file
-
-$surat->file_surat = $url;
-$surat->save();
 
 class SuratMasukController extends Controller
 {
@@ -54,17 +42,39 @@ class SuratMasukController extends Controller
             'file' => 'nullable|mimes:jpg,jpeg,png,pdf|max:2048'
         ]);
 
-        if ($request->hasFile('file')) {
-            $file = $request->file('file');
-            $namaFileAsli = time() . '_' . $file->getClientOriginalName();
-            $file->storeAs('surat', $namaFileAsli, 'public');
-            $data['file'] = $namaFileAsli;
+        $surat = new SuratMasuk();
+        $surat->kategori_id = $request->kategori_id;
+        $surat->nomor_berkas = $request->nomor_berkas;
+        $surat->alamat_pengirim = $request->alamat_pengirim;
+        $surat->tanggal_surat = $request->tanggal_surat;
+        $surat->nomor_surat = $request->nomor_surat;
+        $surat->perihal = $request->perihal;
+
+        if ($request->hasFile('SuratMasuk')) {
+        $file = $request->file('SuratMasuk');
+
+        $uploaded = Cloudinary::upload($file->getRealPath(), [
+            'folder' => 'surat'
+        ]);
+
+        $surat->file_surat = $uploaded->getSecurePath();
         }
 
-        SuratMasuk::create($data);
+        $surat->save();
 
-        return redirect()->route('surat-masuk.index')
-            ->with('success', 'Data berhasil ditambahkan');
+        return redirect()->route('surat.index')->with('success', 'Surat berhasil ditambahkan');
+
+        // if ($request->hasFile('file')) {
+        //     $file = $request->file('file');
+        //     $namaFileAsli = time() . '_' . $file->getClientOriginalName();
+        //     $file->storeAs('surat', $namaFileAsli, 'public');
+        //     $data['file'] = $namaFileAsli;
+        // }
+
+        // SuratMasuk::create($data);
+
+        // return redirect()->route('surat-masuk.index')
+        //     ->with('success', 'Data berhasil ditambahkan');
     }
 
     public function edit(SuratMasuk $suratMasuk)
