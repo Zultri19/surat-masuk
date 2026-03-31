@@ -23,9 +23,9 @@
         <h1><i class="fa-solid fa-envelope"></i> Jelajahi Surat</h1>
         <p class="mb-3">Sistem Informasi Arsip Surat Digital</p>
 
-        <a href="/login" class="btn btn-light">
+        {{-- <a href="/login" class="btn btn-light">
             <i class="fa-solid fa-right-to-bracket"></i> Login Admin
-        </a>
+        </a> --}}
 
     </div>
 </div>
