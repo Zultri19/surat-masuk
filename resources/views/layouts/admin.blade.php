@@ -72,9 +72,7 @@
            aria-expanded="false">
 
             <div class="position-relative d-inline-block">
-                <img src="{{ auth()->user()->photo 
-                        // ? asset('storage/profile/' . auth()->user()->photo) 
-                        : asset('asset/img/default.png') }}" 
+                <img src="{{ auth()->user()->photo ?? asset('asset/img/default.png') }}" 
                     width="45" 
                     height="45"
                     class="rounded-circle"
