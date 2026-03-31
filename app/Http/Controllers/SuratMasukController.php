@@ -57,12 +57,12 @@ class SuratMasukController extends Controller
             'folder' => 'surat'
         ]);
 
-        $surat->file_surat = $uploaded->getSecurePath();
+        $surat->SuratMasuk = $uploaded->getSecurePath();
         }
 
         $surat->save();
 
-        return redirect()->route('surat.index')->with('success', 'Surat berhasil ditambahkan');
+        return redirect()->route('surat-masuk.index')->with('success', 'Surat berhasil ditambahkan');
 
         // if ($request->hasFile('file')) {
         //     $file = $request->file('file');
