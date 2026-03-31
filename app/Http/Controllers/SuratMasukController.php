@@ -6,6 +6,18 @@ use App\Models\Kategori;
 use App\Models\SuratMasuk;
 use Illuminate\Http\Request;
 // use Illuminate\Support\Facades\Storage;
+use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
+
+$file = $request->file('file_surat');
+
+$uploaded = Cloudinary::upload($file->getRealPath(), [
+    'folder' => 'surat'
+]);
+
+$url = $uploaded->getSecurePath(); // URL file
+
+$surat->file_surat = $url;
+$surat->save();
 
 class SuratMasukController extends Controller
 {
