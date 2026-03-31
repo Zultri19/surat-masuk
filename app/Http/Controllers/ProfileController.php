@@ -4,9 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Storage;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
+use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
 
 class ProfileController extends Controller
 {
@@ -28,20 +28,28 @@ class ProfileController extends Controller
         $user->name = $request->name;
 
         // Jika upload foto baru
-        if ($request->hasFile('photo')) {
+        // if ($request->hasFile('photo')) {
 
-            // Hapus foto lama jika ada
-            if ($user->photo && Storage::exists('public/profile/' . $user->photo)) {
-                Storage::delete('public/profile/' . $user->photo);
-            }
+        //     // Hapus foto lama jika ada
+        //     if ($user->photo && Storage::exists('public/profile/' . $user->photo)) {
+        //         Storage::delete('public/profile/' . $user->photo);
+        //     }
 
-            $file = $request->file('photo');
-            $filename = time() . '.' . $file->getClientOriginalExtension();
+        //     $file = $request->file('photo');
+        //     $filename = time() . '.' . $file->getClientOriginalExtension();
 
-            $file->storeAs('profile', $filename, 'public');
+        //     $file->storeAs('profile', $filename, 'public');
 
-            $user->photo = $filename;
-        }
+        //     $user->photo = $filename;
+        // }
+
+        $file = $request->file('photo');
+
+        $uploaded = Cloudinary::upload($file->getRealPath(), [
+        'folder' => 'profile'   
+        ]);
+
+        $user->photo = $uploaded->getSecurePath(); // simpan URL langsung
 
         $user->save();
 
