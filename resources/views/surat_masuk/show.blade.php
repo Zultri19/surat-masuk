@@ -45,7 +45,8 @@
         @if($suratMasuk->file)
 
             <iframe 
-                src="{{ asset('storage/surat/' . $suratMasuk->file) }}"
+                $file = Cloudinary::upload(...);
+                $surat->file = $file->getSecurePath();
                 width="100%" 
                 height="200px">
             </iframe>
