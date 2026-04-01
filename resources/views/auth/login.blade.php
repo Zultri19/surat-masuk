@@ -2,7 +2,7 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <title>SURAT MASUK</title>
+    <title>Aplikasi Surat Masuk</title>
 
     <link rel="stylesheet" href="{{ asset('asset/css/login.css') }}?v={{ time() }}">
 </head>

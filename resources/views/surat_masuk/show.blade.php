@@ -43,12 +43,10 @@
         </table>
 
         @if($suratMasuk->file)
-
             <iframe 
-                $file = Cloudinary::upload(...);
-                $surat->file = $file->getSecurePath();
+                src="{{ $suratMasuk->file }}" 
                 width="100%" 
-                height="200px">
+                height="500px">
             </iframe>
         @endif
 

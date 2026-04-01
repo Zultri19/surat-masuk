@@ -48,7 +48,11 @@ use Illuminate\Support\Str;
                     <td>{{ $s->tanggal_surat->format('d-m-Y') }}</td>
                     <td>{{ $s->nomor_surat }}</td>
                     <td title="{{ $s->perihal }}">{{ Str::limit($s->perihal, 50) }}</td>
-                    <td title="{{ $s->file }}">{{ Str::limit($s->file, 50) }}</td>
+                    <td title="{{ $s->file }}">  <a href="{{ Str::limit($s->file, 50) }}"
+                                class="btn btn-info btn-sm"
+                                title="Preview">
+                                <i class="fa-solid fa-eye"></i>
+                            </a> {{ Str::limit($s->file, 50) }}</td>
                     <td class="text-center">
                         {{-- Preview --}}
                             <a href="{{ route('surat-masuk.show', $s->id) }}"
