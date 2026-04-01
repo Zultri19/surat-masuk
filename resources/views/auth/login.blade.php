@@ -2,7 +2,7 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <title>Login Admin TU</title>
+    <title>SURAT MASUK</title>
 
     <link rel="stylesheet" href="{{ asset('asset/css/login.css') }}?v={{ time() }}">
 </head>
@@ -12,7 +12,7 @@
 
     <img src="{{ asset('asset/images/ChatGPT_Image_9_Feb_2026__12.53.28-removebg-preview.png') }}" alt="Logo Kominfo">
 
-    <h2>Login Admin TU</h2>
+    <h2>Login</h2>
 
     @if(session('success'))
         <div class="alert alert-success">

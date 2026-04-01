@@ -50,14 +50,14 @@ class SuratMasukController extends Controller
         $surat->nomor_surat = $request->nomor_surat;
         $surat->perihal = $request->perihal;
 
-        if ($request->hasFile('SuratMasuk')) {
-        $file = $request->file('SuratMasuk');
+        if ($request->hasFile('file')) {
+            $file = $request->file('file');
 
-        $uploaded = Cloudinary::upload($file->getRealPath(), [
-            'folder' => 'surat'
-        ]);
+            $uploaded = Cloudinary::upload($file->getRealPath(), [
+                'folder' => 'surat_masuk'
+            ]);
 
-        $surat->SuratMasuk = $uploaded->getSecurePath();
+            $surat->file = $uploaded->getSecurePath();
         }
 
         $surat->save();

@@ -11,6 +11,29 @@ use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
 
 class ProfileController extends Controller
 {
+    public function store(Request $request)
+    {
+        $data = $request->validate([
+        'photo' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
+        ]);
+
+        $user = new user();
+
+        if ($request->hasFile('photo')) {
+        $file = $request->file('photo');
+
+        $uploadedFile = Cloudinary::upload($file->getRealPath(), [
+            'folder' => 'profile'
+        ]);
+
+         $user->file = $uploadedFile->getSecurePath();
+        }
+
+        $user->save();
+
+        return back()->with('success', 'Profile berhasil disimpan');
+    }
+    
     public function edit()
     {
         return view('profile.edit');
