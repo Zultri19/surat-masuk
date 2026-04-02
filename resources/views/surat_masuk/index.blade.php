@@ -69,22 +69,23 @@ use Illuminate\Support\Str;
                             </a>
                         
                         {{-- Hapus --}}
-                        @if(auth()->user()->role == 'admin')
-                            <form action="{{ route('surat-masuk.destroy', $s->id) }}"
-                                method="POST"
-                                style="display:inline;"
-                                onsubmit="return confirm('Yakin hapus data?')">
+                        @auth
+                            @if(auth()->user()->role == 'admin')
+                                <form action="{{ route('surat-masuk.destroy', $s->id) }}"
+                                    method="POST"
+                                    style="display:inline;"
+                                    onsubmit="return confirm('Yakin hapus data?')">
 
-                                @csrf
-                                @method('DELETE')
+                                    @csrf
+                                    @method('DELETE')
 
-                                <button type="submit"
-                                    class="btn btn-danger btn-sm"
-                                    title="Hapus">
-                                    <i class="fa-solid fa-trash"></i>
-                                </button>
-                            </form>
-                        @endif
+                                    <button type="submit"
+                                        class="btn btn-danger btn-sm"
+                                        title="Hapus">
+                                        <i class="fa-solid fa-trash"></i>
+                                    </button>
+                                </form>
+                            @endif
                     </td>
                 </tr>
                 @endforeach
