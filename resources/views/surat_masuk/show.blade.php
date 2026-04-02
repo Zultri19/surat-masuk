@@ -43,6 +43,8 @@
         </table>
 
         @if($suratMasuk->file)
+            <hr>
+            <h5>Preview File</h5>
             <iframe 
                 src="{{ $suratMasuk->file }}" width="100%" height="500px">
             </iframe>

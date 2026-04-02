@@ -50,9 +50,7 @@ use Illuminate\Support\Str;
                     <td title="{{ $s->perihal }}">{{ Str::limit($s->perihal, 50) }}</td>
                     <td title="{{ $s->file }}">
                         <div style="max-width:200px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;">
-                            <a href="{{ $s->file }}" target="_blank">
                                 {{ Str::limit($s->file, 40) }}
-                            </a>
                         </div>
                     </td>
                     <td class="text-center">
