@@ -54,7 +54,7 @@ class SuratMasukController extends Controller
             $file = $request->file('file');
 
             $uploaded = Cloudinary::upload($file->getRealPath(), [
-                'folder' => 'surat_masuk'
+                'resource_type' => 'raw'
             ]);
 
             $surat->file = $uploaded->getSecurePath();
