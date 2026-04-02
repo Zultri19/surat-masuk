@@ -51,7 +51,7 @@ use Illuminate\Support\Str;
                     <td title="{{ $s->file }}">  <a href="{{ Str::limit($s->file, 10) }}"
                                 class="btn btn-info btn-sm"
                                 title="Preview">
-                                <i class="fa-solid fa-eye"></i>
+                                {{-- <i class="fa-solid fa-eye"></i> --}}
                             </a> {{ $s->file }}</td>
                     <td class="text-center">
                         {{-- Preview --}}
