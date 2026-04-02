@@ -44,9 +44,7 @@
 
         @if($suratMasuk->file)
             <iframe 
-                src="{{ $suratMasuk->file }}" 
-                width="100%" 
-                height="500px">
+                src="{{ $suratMasuk->file }}" width="100%" height="500px">
             </iframe>
         @endif
 
